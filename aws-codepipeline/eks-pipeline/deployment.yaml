@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: feed
+  name: feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feed
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: feed
+    spec:
+      containers:
+      - image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/feed-app
+        name: feed
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+status: {}
